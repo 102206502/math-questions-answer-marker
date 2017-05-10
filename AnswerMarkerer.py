@@ -57,8 +57,7 @@ class QuestionSolutions(object):
 		
 class MathSolution(object):
 	"""某個題目的一種解法"""
-	def __init__(self, steps):
-		self.steps = steps
+	def __init__(self):
 		self.step_count = 0
 		#
 
@@ -88,9 +87,9 @@ class StepOfSolution(object):
 	step_type : string
 	步驟類型
 	"""
-	def __init__(self, content='', step_type='calculation', keys=[], number=0):
+	def __init__(self, content='', step_type='calculation', tmp_keys='', number=0):
 		self.content = content
-		self.keys = keys
+		self.keys = add_by_tmp_keys(tmp_keys)
 		self.number = number # 0相當於未設定順序編號
 		self.step_type = step_type
 
@@ -98,6 +97,10 @@ class StepOfSolution(object):
 	key : string in Regular expression'''
 	def addKey(key):
 		self.keys.append(key)
+
+	def add_by_tmp_keys():
+		while(true):
+			#加入key，遇到\n表示下個key
 
 	'''計算本步驟正確率'''
 	def get_score(answer):
@@ -120,5 +123,20 @@ class StepOfSolution(object):
 # set 鐵桶題目 solution
 bucket_question = QuestionSolutions('buket question')
 
+temp_solution = MathSolution()
 temp_step = StepOfSolution('設鐵桶與鐵柱底面積、半徑2m, m', 'set variables')
-temp_step.addKey('')
+temp_step.addKey('設.*鐵桶.*底面積.*半徑')
+temp_step.addKey('設.*鐵柱.*底面積.*半徑')
+temp_step.addKey('2\w.*\w')
+temp_solution.add_step(temp_step)
+
+temp_step = StepOfSolution('\dfrac {\left( 2m\right) ^{2}\pi \times 12-m^{2}\pi \times 12} {\left( 2m\right) ^{2}\pi }=\dfrac {36m^{2}\pi } {4m^{2}\pi }=9', 'equesion calculate')
+temp_step.addKey('\dfrac {\left( 2m\right) ^{2}\pi \times 12-m^{2}\pi \times 12} {\left( 2m\right) ^{2}\pi }=\dfrac {36m^{2}\pi } {4m^{2}\pi }=9')
+temp_solution.add_step(temp_step)
+
+temp_step = StepOfSolution('水面高度變為 9公分', 'answer')
+temp_step.addKey('9\s*公分')
+temp_solution.add_step(temp_step)
+
+
+
