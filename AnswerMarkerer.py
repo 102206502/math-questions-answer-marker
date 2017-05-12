@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 class QuestionSolutions(object):
@@ -8,7 +9,7 @@ class QuestionSolutions(object):
 
 	'''
 	'''
-	def get_score(answer_sheet_file_name):
+	def get_score(self, answer_sheet_file_name):
 		'''
 		依據本題儲存之解法，計算本題分數
 
@@ -25,8 +26,8 @@ class QuestionSolutions(object):
 		# end for
 		# return max_score
 		'''
-		answer_lines = read_answer_sheet(answer_sheet_file_name)
-		max_score = 0
+		answer_lines = self.read_answer_sheet(answer_sheet_file_name)
+		max_score = 0.0
 		# calculate score
 		for solution in self.math_solutions:
 			solution_score = solution.get_score(answer_lines)
@@ -38,40 +39,43 @@ class QuestionSolutions(object):
 
 		return max_score
 
-	def read_answer_sheet(answer_sheet_file_name):
-		answer_lines = []
+	def read_answer_sheet(self, answer_sheet_file_name):
+		answer_lines = ''
 		file_answer = open(answer_sheet_file_name, 'rt')
-		while true:
+		while True:
 			line = file_answer.readline()
 			if not line:
 				break
 
 			answer_lines += line
-			answer_lines += '\n'
 
 		file_answer.close()
+		print 'read file\n' + answer_lines
+
 		return answer_lines
 
-	def addSolution(solution):
+	def addSolution(self, solution):
 		self.math_solutions.append(solution)
 		
 class MathSolution(object):
 	"""某個題目的一種解法"""
 	def __init__(self):
 		self.step_count = 0
+		self.steps = []
 		#
 
-	def add_step(step):
+	def add_step(self, step):
 		self.step_count += 1
 		step.number = self.step_count
 		self.steps.append(step)
 
-	def get_score(answer):
-		step_score = 0
+	def get_score(self, answer):
+		step_score = 0.0
 		for step in self.steps:
 			step_score += step.get_score(answer)
 
-		score = step_score/len(steps)
+		score = step_score/len(self.steps)
+		return score
 
 class StepOfSolution(object):
 	"""一種解法中的一個步驟
@@ -87,34 +91,38 @@ class StepOfSolution(object):
 	step_type : string
 	步驟類型
 	"""
-	def __init__(self, content='', step_type='calculation', tmp_keys='', number=0):
+	def __init__(self, content='', step_type='calculation', keys=[], number=0):
 		self.content = content
-		self.keys = add_by_tmp_keys(tmp_keys)
+		#self.keys = add_by_tmp_keys(tmp_keys)
+		self.keys = keys
 		self.number = number # 0相當於未設定順序編號
 		self.step_type = step_type
 
 	'''加入關鍵正規式
 	key : string in Regular expression'''
-	def addKey(key):
+	def addKey(self, key):
 		self.keys.append(key)
 
 	def add_by_tmp_keys():
-		while(true):
+		#while(true):
 			#加入key，遇到\n表示下個key
 
-	'''計算本步驟正確率'''
-	def get_score(answer):
+		return
+
+
+	def get_score(self, answer):
 		match_count = 0
 
 		for key in self.keys:
 			result = re.search(key, answer)
 			if result:
-				match_count = match_count + 1
+				match_count += 1
 
-
+		score = 0.0
 		score = match_count/len(self.keys)
-		print 'step ' + self.content + ' get ' + score + ' points'
+		print 'step ' + self.content + ' 正確率 ' + str(score)
 		return score
+
 
 ###end of class definition###	
 ###############################################################################
@@ -124,19 +132,22 @@ class StepOfSolution(object):
 bucket_question = QuestionSolutions('buket question')
 
 temp_solution = MathSolution()
-temp_step = StepOfSolution('設鐵桶與鐵柱底面積、半徑2m, m', 'set variables')
-temp_step.addKey('設.*鐵桶.*底面積.*半徑')
-temp_step.addKey('設.*鐵柱.*底面積.*半徑')
-temp_step.addKey('2\w.*\w')
+temp_step = StepOfSolution('設水桶與鐵柱底面積、半徑2m, m', 'set variables')
+temp_step.addKey('(設|令).*桶.*底面積.*半徑')
+temp_step.addKey("(設|令).*柱.*底面積.*半徑")
+temp_step.addKey('2[a-zA-Z].*[a-zA-Z]')
 temp_solution.add_step(temp_step)
 
-temp_step = StepOfSolution('\dfrac {\left( 2m\right) ^{2}\pi \times 12-m^{2}\pi \times 12} {\left( 2m\right) ^{2}\pi }=\dfrac {36m^{2}\pi } {4m^{2}\pi }=9', 'equesion calculate')
-temp_step.addKey('\dfrac {\left( 2m\right) ^{2}\pi \times 12-m^{2}\pi \times 12} {\left( 2m\right) ^{2}\pi }=\dfrac {36m^{2}\pi } {4m^{2}\pi }=9')
+temp_step = StepOfSolution('\\dfrac {\\left( 2m\\right) ^\{2\}\pi \\times 12-m^\{2\}\pi \\times 12} {\\left( 2m\\right) ^\{2\}\\pi }=\\dfrac {36m^\{2\}\\pi } {4m^\{2\}\\pi }=9', 'equesion calculate')
+temp_step.addKey('=(?x)9')
 temp_solution.add_step(temp_step)
 
 temp_step = StepOfSolution('水面高度變為 9公分', 'answer')
-temp_step.addKey('9\s*公分')
+temp_step.addKey('(9|九)(?x)公分')
 temp_solution.add_step(temp_step)
 
+bucket_question.addSolution(temp_solution)
 
+score1 = bucket_question.get_score('Stroke_38_text.txt')
 
+print 'Stroke_38_text 正確率 ' + str(score1)
