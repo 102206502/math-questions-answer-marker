@@ -11,7 +11,7 @@ temp_step.addKey('(設|令).*買\s*(x|X)\s*(枝|支)鉛筆')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12x+25 ( 10-x )+52=12 ( 10-x )+25x', 'write equesion')
-temp_step.addKey('12x+25\\left\( 10-x\\right\) +52=12\\left\( 10-x\\right\) +25x')
+temp_step.addKey('12x\+25\\left\( 10-x\\right\) \+52=12\\left\( 10-x\\right\) \+25x')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12x＋25 ( 10－x )＋52＝12 ( 10－x )＋25x\n12x＋250－25x＋52＝120－12x＋25x\n－26x＝－182\nx＝7', 'equesion calculation')
@@ -35,8 +35,8 @@ temp_step.addKey('(設|令).*買\s*(x|X)\s*(枝|支)原子筆')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )', 'write equesion')
-temp_step.addKey('12\\left\( 10-x\\right\) +25x+52')
-temp_step.addKey('12x+25\\left \( 10-x \\right \)')
+temp_step.addKey('12\\left\( 10-x\\right\) \+25x\+52')
+temp_step.addKey('12x\+25\\left \( 10-x \\right \)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )\n120－10x＋25 x＋52＝12x＋250－25x\n26x＝78\nx＝3', 'equesion calculation')
@@ -62,11 +62,11 @@ temp_step.addKey('(設|令).*買\s*(y|Y)\s*(枝|支)原子筆')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12x＋25 y ＋52＝12 y＋25 x', 'write equesion')
-temp_step.addKey('12x+25y+52\s*=\s*12y+25x')
+temp_step.addKey('12x\+25y\+52\s*=\s*12y\+25x')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('x+y=10', 'write equesion')
-temp_step.addKey('x+y=10')
+temp_step.addKey('x\+y=10')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('x-y=4, x+y=10,x=7,y=3', 'equesion calculation')
@@ -93,11 +93,11 @@ temp_step.addKey('(設|令).*買\s*(y|Y)\s*(枝|支)鉛筆')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12y＋25 x ＋52＝12 x＋25 y', 'write equesion')
-temp_step.addKey('25x+12y+52\s*=\s*25y+12x')
+temp_step.addKey('25x\+12y\+52\s*=\s*25y\+12x')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('x+y=10', 'write equesion')
-temp_step.addKey('x+y=10')
+temp_step.addKey('x\+y=10')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('x-y=-4, x+y=10, x=3,y=7', 'equesion calculation')
