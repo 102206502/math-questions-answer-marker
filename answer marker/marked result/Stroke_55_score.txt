@@ -11,4 +11,8 @@ keys len:1
 step 水面高度變為 9公分
 match count : 0.0
 正確率 0.0
+solution 1 正確率 : 0.0
+
+
+
 Stroke_55正確率 0.0

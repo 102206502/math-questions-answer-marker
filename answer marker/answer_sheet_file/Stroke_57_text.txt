@@ -1,5 +1,4 @@
-,
-i 榧子半徑 r, 水桶半徑 zr
+,榧子半徑 r,水桶半徑2 r
 \left( 2r\right) ^{2}\pi \times 12-r^{2}\pi \times 12=\left( 2r\right) ^{2}\pi xh
 h=\dfrac {\left( 2r\right) ^{2}\pi \times 12-r^{2}\pi \times 12} {\left( 2r\right) ^{2}\pi }=\left( \begin{matrix} 2^{2}& -1\end{matrix} \right) \times 3
 =\left( 4-1\right) \times 3=9

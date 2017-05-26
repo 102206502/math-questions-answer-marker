@@ -1,3 +1,4 @@
-設水桶底面積半徑 2 m,柱子底面半徑為 m,桶高出
-h =(14川元一八元)ㄨ12.er.no = (4-1) xlz.­hn)元 ntgnro = 3 x 3 =9
+設水桶底面積半徑2 m,柱子底面半徑為 m,桶高 h
+h=\dfrac {\left( \left( 2m\right) ^{2}\pi -m^{2}\pi \right) \times 12} {\left( 2m\right) ^{2}\pi }=\dfrac {\left( 4-1\right) \times 12} {4}=3\times 3=9
+答: 9 公分
 

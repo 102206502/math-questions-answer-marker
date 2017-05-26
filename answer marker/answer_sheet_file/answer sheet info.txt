@@ -1,3 +1,10 @@
+Stroke_37
+question data : bucket
+image expect correct : all
+solution : 1
+recognition error on key : 0
+
+-------------------------------
 Stroke_38
 question data : bucket
 image expect correct : all
@@ -107,7 +114,7 @@ recognition error on key : 2
 -------------------------------
 Stroke_53
 question data : bucket
-image expect correct : step 1
+image expect correct : 0
 solution : 1
 recognition error on key : 0
 
