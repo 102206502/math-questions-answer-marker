@@ -35,8 +35,10 @@ class QuestionSolutions(object):
 		solution_count = 1
 		for solution in self.math_solutions:
 			output_file.write('solution ' + str(solution_count) + '\n')
+			print 'solution ' + str(solution_count) + '\n'
 			solution_score = solution.get_score(answer_lines, output_file)
 			output_file.write('solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n')
+			print 'solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n'
 			if solution_score > max_score:
 				max_score = solution_score
 
@@ -45,7 +47,6 @@ class QuestionSolutions(object):
 
 			solution_count += 1
 
-		output_file.write('\n\n')
 		return max_score
 
 	def read_answer_sheet(self, answer_sheet_file_name):
