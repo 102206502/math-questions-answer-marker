@@ -1,6 +1,0 @@
-設桶子底面半徑2 m,圓柱半徑 m,水面變 h 公分
-\left( \left( 2m\right) ^{2}\pi -m^{2}\pi \right) \times 12=\left( 2m\right) ^{2}\pi xh
-\left( 4^{2}-1\right) \times 3=h
-h=75
-答: 75 公分
-
