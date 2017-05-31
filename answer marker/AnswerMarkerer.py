@@ -126,7 +126,16 @@ class StepOfSolution(object):
 		match_count = 0.0
 
 		for key in self.keys:
-			result = re.search(key, answer)
+			matches = re.finditer(key, answer)
+			print 'key:', key
+
+			result = False
+
+			for matchNum, match in enumerate(matches):
+				matchNum = matchNum + 1
+				if matchNum:
+					result = True
+
 			if result:
 				match_count += 1
 
