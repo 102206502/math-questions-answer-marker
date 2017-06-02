@@ -145,3 +145,45 @@ question data : bucket
 image expect correct : 0
 solution : 1
 recognition error on key : 0
+
+-------------------------------
+Stroke_61
+question data : payForPen
+image expect correct : all
+solution : 1
+recognition error on key : 1
+
+-------------------------------
+Stroke_62
+question data : payForPen
+image expect correct : all
+solution : 2
+recognition error on key : 1
+
+-------------------------------
+Stroke_63
+question data : payForPen
+image expect correct : all
+solution : 3
+recognition error on key : 1 line 2
+
+-------------------------------
+Stroke_64
+question data : payForPen
+image expect correct : all
+solution : 4
+recognition error on key : 0
+
+-------------------------------
+Stroke_65
+question data : payForPen
+image expect correct : all
+solution : 3
+recognition error on key : 0
+
+-------------------------------
+Stroke_66
+question data : payForPen
+image expect correct : all
+solution : 1
+recognition error on key : 0

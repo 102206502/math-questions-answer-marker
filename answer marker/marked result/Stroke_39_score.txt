@@ -12,8 +12,8 @@ step 12x＋25 ( 10－x )＋52＝12 ( 10－x )＋25x
 12x＋250－25x＋52＝120－12x＋25x
 －26x＝－182
 x＝7
-match count : 1.0
-正確率 1.0
+match count : 0.0
+正確率 0.0
 keys len:1
 step 12\times 7+25\times \left( \begin\{matrix\} 10& -7\end\{matrix\} \right) =84+75=159
 match count : 1.0
@@ -22,7 +22,7 @@ keys len:1
 step 答：159 元
 match count : 1.0
 正確率 1.0
-solution 1 正確率 : 0.8
+solution 1 正確率 : 0.6
 
 solution 2
 keys len:1
@@ -104,4 +104,6 @@ match count : 1.0
 正確率 1.0
 solution 4 正確率 : 0.333333333333
 
-Stroke_39正確率 0.8
+
+
+Stroke_39正確率 0.6
