@@ -1,0 +1,9 @@
+設買 x 枝原子筆、 10-x 枝鉛筆
+12\left( 10-x\right) +25x+52=12x+25\left( 10\rightharpoonup x\right) 
+26x=78
+x =3
+12\times 7+25\left( 10-3\right) 
+12\times \left( 10-3\right) +25\times 7
+12\times \left( 10-3\right) +25\times 3=159
+答: 159 元
+
