@@ -50,17 +50,17 @@ class QuestionSolutions(object):
 		return max_score
 
 	def read_answer_sheet(self, answer_sheet_file_name):
-		answer_lines = ''
+		answer_lines = []
 		file_answer = open(answer_sheet_file_name, 'rt')
 		while True:
 			line = file_answer.readline()
 			if not line:
 				break
 
-			answer_lines += line
+			answer_lines.append(line)
 
 		file_answer.close()
-		print 'read file\n' + answer_lines
+		print 'read file\n', answer_lines
 
 		return answer_lines
 
@@ -90,16 +90,16 @@ class MathSolution(object):
 class StepOfSolution(object):
 	"""一種解法中的一個步驟
 
-	Parameter
-	----------
-	contect : string
-	解題步驟內容
-	keys : list of string
-	評分關鍵
-	number : int
-	步驟在解法中的順序 start from 1, default 0
-	step_type : string
-	步驟類型
+		Parameter
+		----------
+		contect : string
+		解題步驟內容
+		keys : list of string
+		評分關鍵
+		number : int
+		步驟在解法中的順序 start from 1, default 0
+		step_type : string
+		步驟類型
 	"""
 	def __init__(self, content='', step_type='calculation'):
 		self.content = content
@@ -109,9 +109,10 @@ class StepOfSolution(object):
 		self.step_type = step_type
 
 	'''加入關鍵正規式
-	Parameter
-	----------
-	key : string in Regular expression'''
+		Parameter
+		----------
+		key : string in Regular expression
+	'''
 	def addKey(self, key):
 		self.keys.append(key)
 
@@ -121,23 +122,32 @@ class StepOfSolution(object):
 
 		return
 
-
+	'''計算該步驟成績
+		Parameter
+		----------
+		answer : 1D string list
+			lines of the answer sheet
+		output_file : file obj
+			marked result file
+	'''
 	def get_score(self, answer, output_file):
 		match_count = 0.0
 
 		for key in self.keys:
-			matches = re.finditer(key, answer)
 			print 'key:', key
+			for ans_line in answer:
+				matches = re.finditer(key, ans_line)
 
-			result = False
+				result = False
 
-			for matchNum, match in enumerate(matches):
-				matchNum = matchNum + 1
-				if matchNum:
-					result = True
+				for matchNum, match in enumerate(matches):
+					matchNum = matchNum + 1
+					if matchNum:
+						result = True
 
-			if result:
-				match_count += 1
+				if result:
+					match_count += 1
+					break
 
 		score = 0.0
 		score = match_count/len(self.keys)
