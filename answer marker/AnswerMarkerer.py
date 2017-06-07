@@ -135,7 +135,7 @@ class StepOfSolution(object):
 
 		for key in self.keys:
 			print 'key:', key
-			for ans_line in answer:
+			for line_count, ans_line in enumerate(answer):
 				matches = re.finditer(key, ans_line)
 
 				result = False
@@ -147,6 +147,7 @@ class StepOfSolution(object):
 
 				if result:
 					match_count += 1
+					#self.step_type
 					break
 
 		score = 0.0

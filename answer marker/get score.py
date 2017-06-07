@@ -6,7 +6,7 @@ import set_payForPen_solution
 ##############################################################
 
 
-file_out_id = open("Stroke_NN_text.txt", "r")
+file_out_id = open("Stroke_NN.txt", "r")
 file_id = file_out_id.read() # the 'NN' of file name Stroke_NN_text.txt
 stroke_file_name = 'answer_sheet_file/Stroke_' + file_id + '_text.txt' # make the string of the stroke file
 
