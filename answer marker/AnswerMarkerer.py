@@ -14,6 +14,9 @@ class QuestionSolutions(object):
 		answer_sheet_file_name : string
 			被評分的文字檔名
 
+		line_finish_time_file_name : string
+			每行完成時間的文字檔名
+
 		pseudocode 
 		-----------
 		# 將作答檔案逐行放進list
@@ -28,15 +31,16 @@ class QuestionSolutions(object):
 		# end for
 		# return max_score
 	'''
-	def get_score(self, answer_sheet_file_name, output_file):
-		answer_lines = self.read_answer_sheet(answer_sheet_file_name)
+	def get_score(self, answer_sheet_file_name, line_finish_time_file_name, output_file):
+		answer_lines = self.read_file_in_lines(answer_sheet_file_name)
+		time_lines = self.read_file_in_lines(line_finish_time_file_name)
 		max_score = 0.0
 		# calculate score
-		solution_count = 1
-		for solution in self.math_solutions:
+		for solution_count, solution in enumerate(self.math_solutions):
+			solution_count += 1
 			output_file.write('solution ' + str(solution_count) + '\n')
 			print 'solution ' + str(solution_count) + '\n'
-			solution_score = solution.get_score(answer_lines, output_file)
+			solution_score = solution.get_score(answer_lines, time_lines, output_file)
 			output_file.write('solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n')
 			print 'solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n'
 			if solution_score > max_score:
@@ -45,24 +49,23 @@ class QuestionSolutions(object):
 			if max_score >= 1:
 				break
 
-			solution_count += 1
 
 		return max_score
 
-	def read_answer_sheet(self, answer_sheet_file_name):
-		answer_lines = []
-		file_answer = open(answer_sheet_file_name, 'rt')
+	def read_file_in_lines(self, file_name):
+		lines = []
+		file = open(file_name, 'rt')
 		while True:
-			line = file_answer.readline()
-			if not line:
+			line = file.readline()
+			if not line or line == '\n':
 				break
 
-			answer_lines.append(line)
+			lines.append(line)
 
-		file_answer.close()
-		print 'read file\n', answer_lines
+		file.close()
+		print 'read file\n', lines
 
-		return answer_lines
+		return lines
 
 	def addSolution(self, solution):
 		self.math_solutions.append(solution)
@@ -79,12 +82,21 @@ class MathSolution(object):
 		step.number = self.step_count
 		self.steps.append(step)
 
-	def get_score(self, answer, output_file):
-		step_score = 0.0
-		for step in self.steps:
-			step_score += step.get_score(answer, output_file)
+	def get_score(self, answer_lines, time_lines, output_file):
+		step_scores = 0.0
+		temp_step_type = 'No match'
+		for line_idx, ans_line in enumerate(answer_lines):
+			for step in self.steps:
+				step_score = step.get_score(ans_line, time_lines, output_file)
+				step_scores += step_score
+				if step_score > 0:
+					temp_step_type = step.step_type
+				if step_score >= 1:
+					break
+			output_file.write(temp_step_type + ', line ' + str(line_idx) + ', ' + time_lines[line_idx])
+			print(temp_step_type + ', line ' + str(line_idx) + ', ' + time_lines[line_idx] + '\n')
 
-		score = step_score/len(self.steps)
+		score = step_scores/len(self.steps)
 		return score
 
 class StepOfSolution(object):
@@ -106,6 +118,7 @@ class StepOfSolution(object):
 		#self.keys = add_by_tmp_keys(tmp_keys)
 		self.keys = []
 		self.number = 0 # 0相當於未設定順序編號
+		self.step_type = ''
 		self.step_type = step_type
 
 	'''加入關鍵正規式
@@ -130,32 +143,28 @@ class StepOfSolution(object):
 		output_file : file obj
 			marked result file
 	'''
-	def get_score(self, answer, output_file):
+	def get_score(self, answer, time_lines, output_file):
 		match_count = 0.0
 
 		for key in self.keys:
-			print 'key:', key
-			for line_count, ans_line in enumerate(answer):
-				matches = re.finditer(key, ans_line)
+			matches = re.finditer(key, answer)
 
-				result = False
+			result = False
 
-				for matchNum, match in enumerate(matches):
-					matchNum = matchNum + 1
-					if matchNum:
-						result = True
+			for matchNum, match in enumerate(matches):
+				matchNum = matchNum + 1
+				if matchNum:
+					result = True
 
-				if result:
-					match_count += 1
-					#self.step_type
-					break
+			if result:
+				match_count += 1
 
 		score = 0.0
 		score = match_count/len(self.keys)
-		output_file.write('keys len:' + str(len(self.keys)) + '\n')
-		print 'keys len:', len(self.keys)
-		output_file.write('step ' + self.content + '\nmatch count : ' + str(match_count) + '\n正確率 ' + str(score) + '\n')
-		print 'step ' + self.content + '\nmatch count : ' + str(match_count) + '\n正確率 ' + str(score)
+		if score > 0:
+			print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
+
+		# print 'step ' + self.content + '\nmatch count : ' + str(match_count) + '\n正確率 ' + str(score)
 		return score
 
 

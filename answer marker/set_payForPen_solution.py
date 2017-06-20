@@ -6,11 +6,11 @@ import AnswerMarkerer
 # solution 1 #
 payForPen_question = AnswerMarkerer.QuestionSolutions('pay for pen question')
 temp_solution = AnswerMarkerer.MathSolution()
-temp_step = AnswerMarkerer.StepOfSolution('設買x枝鉛筆，( 10－x ) 枝原子筆', 'set variables')
+temp_step = AnswerMarkerer.StepOfSolution('設買x枝鉛筆，( 10－x ) 枝原子筆', '設定變數')
 temp_step.addKey(r'(設|令).*買\s*(x|X).*鉛筆')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12x+25 ( 10-x )+52=12 ( 10-x )+25x', 'write equesion')
+temp_step = AnswerMarkerer.StepOfSolution('12x+25 ( 10-x )+52=12 ( 10-x )+25x', '列方程式')
 temp_step.addKey(r'12x\+25\\left\( 10-x\\right\) \+52=12\\left\( 10-x\\right\) \+25x')
 temp_solution.add_step(temp_step)
 
@@ -22,7 +22,7 @@ temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\
 temp_step.addKey(r'=\s*159')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('答：159 元', 'answer')
+temp_step = AnswerMarkerer.StepOfSolution('答：159 元', '寫答案')
 temp_step.addKey(r'1\s*5\s*9\s*\(?(元|塊)\)?')
 temp_solution.add_step(temp_step)
 
@@ -30,11 +30,11 @@ payForPen_question.addSolution(temp_solution)
 # end solution 1 #
 # solution 2 #
 temp_solution = AnswerMarkerer.MathSolution()
-temp_step = AnswerMarkerer.StepOfSolution('設買x枝原子筆，( 10－x ) 枝鉛筆', 'set variables')
+temp_step = AnswerMarkerer.StepOfSolution('設買x枝原子筆，( 10－x ) 枝鉛筆', '設定變數')
 temp_step.addKey(r'(設|令).*買\s*(x|X).*原子筆')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )', 'write equesion')
+temp_step = AnswerMarkerer.StepOfSolution('12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )', '列方程式')
 temp_step.addKey(r'12\\left\( 10-x\\right\) \+25x\+52')
 temp_step.addKey(r'12x\+25\\left \( 10-x \\right \)')
 temp_solution.add_step(temp_step)
@@ -43,11 +43,11 @@ temp_step = AnswerMarkerer.StepOfSolution('12(10－x)＋25 x ＋52＝12 x＋25 (
 temp_step.addKey(r'x\s*=\s*3')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', 'calculate answer')
+temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')
 temp_step.addKey(r'=\s*159')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('答：159 元', 'answer')
+temp_step = AnswerMarkerer.StepOfSolution('答：159 元', '寫答案')
 temp_step.addKey(r'1\s*5\s*9\s*\(?(元|塊)\)?')
 temp_solution.add_step(temp_step)
 
@@ -56,29 +56,29 @@ payForPen_question.addSolution(temp_solution)
 
 # solution 3 #
 temp_solution = AnswerMarkerer.MathSolution()
-temp_step = AnswerMarkerer.StepOfSolution('設買x枝鉛筆，y 枝原子筆', 'set variables')
+temp_step = AnswerMarkerer.StepOfSolution('設買x枝鉛筆，y 枝原子筆', '設定變數')
 temp_step.addKey(r'(設|令).*買\s*(x|X).*鉛筆')
 temp_step.addKey(r'(設|令).*(y|Y).*原子筆')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12x＋25 y ＋52＝12 y＋25 x', 'write equesion')
+temp_step = AnswerMarkerer.StepOfSolution('12x＋25 y ＋52＝12 y＋25 x', '列方程式')
 temp_step.addKey(r'12x\+25y\+52\s*=\s*12y\+25x')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('x+y=10', 'write equesion')
+temp_step = AnswerMarkerer.StepOfSolution('x+y=10', '列方程式')
 temp_step.addKey(r'x\+y=10')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('x-y=4, x+y=10,x=7,y=3', 'equesion calculation')
+temp_step = AnswerMarkerer.StepOfSolution('x-y=4, x+y=10,x=7,y=3', '算出方程式解')
 temp_step.addKey(r'x\s*=\s*7')
 temp_step.addKey(r'y\s*=\s*3')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', 'calculate answer')
+temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')
 temp_step.addKey(r'=\s*159')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('答：159 元', 'answer')
+temp_step = AnswerMarkerer.StepOfSolution('答：159 元', '寫答案')
 temp_step.addKey(r'1\s*5\s*9\s*\(?(元|塊)\)?')
 temp_solution.add_step(temp_step)
 
@@ -87,29 +87,29 @@ payForPen_question.addSolution(temp_solution)
 
 # solution 4 #
 temp_solution = AnswerMarkerer.MathSolution()
-temp_step = AnswerMarkerer.StepOfSolution('設買x枝原子筆，y 枝鉛筆', 'set variables')
+temp_step = AnswerMarkerer.StepOfSolution('設買x枝原子筆，y 枝鉛筆', '設定變數')
 temp_step.addKey(r'(設|令).*買\s*(x|X)\s*(枝|支)原子筆')
 temp_step.addKey(r'(設|令).*(y|Y)\s*(枝|支)鉛筆')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12y＋25 x ＋52＝12 x＋25 y', 'write equesion')
+temp_step = AnswerMarkerer.StepOfSolution('12y＋25 x ＋52＝12 x＋25 y', '列方程式')
 temp_step.addKey(r'25x\s*\+\s*12y\s*\+\s*52\s*=\s*25\s*y\s*\+\s*12\s*x')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('x+y=10', 'write equesion')
+temp_step = AnswerMarkerer.StepOfSolution('x+y=10', '列方程式')
 temp_step.addKey(r'\s*x\s*\+y=10')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('x-y=-4, x+y=10, x=3,y=7', 'equesion calculation')
+temp_step = AnswerMarkerer.StepOfSolution('x-y=-4, x+y=10, x=3,y=7', '算出方程式解')
 temp_step.addKey(r'x\s*=\s*3')
 temp_step.addKey(r'y\s*=\s*7')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', 'calculate answer')
+temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')
 temp_step.addKey('=\s*159')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('答：159 元', 'answer')
+temp_step = AnswerMarkerer.StepOfSolution('答：159 元', '寫答案')
 temp_step.addKey('1\s*5\s*9\s*\(?(元|塊)\)?')
 temp_solution.add_step(temp_step)
 
