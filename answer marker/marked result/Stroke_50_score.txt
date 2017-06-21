@@ -29,7 +29,7 @@ keys len:1
 step 設買x枝原子筆，( 10－x ) 枝鉛筆
 match count : 0.0
 正確率 0.0
-keys len:2
+keys len:1
 step 12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )
 match count : 0.0
 正確率 0.0
@@ -38,8 +38,8 @@ step 12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )
 120－10x＋25 x＋52＝12x＋250－25x
 26x＝78
 x＝3
-match count : 0.0
-正確率 0.0
+match count : 1.0
+正確率 1.0
 keys len:1
 step 12\times 7+25\times \left( \begin\{matrix\} 10& -7\end\{matrix\} \right) =84+75=159
 match count : 1.0
@@ -48,13 +48,13 @@ keys len:1
 step 答：159 元
 match count : 1.0
 正確率 1.0
-solution 2 正確率 : 0.4
+solution 2 正確率 : 0.6
 
 solution 3
 keys len:2
 step 設買x枝鉛筆，y 枝原子筆
-match count : 0.0
-正確率 0.0
+match count : 1.0
+正確率 0.5
 keys len:1
 step 12x＋25 y ＋52＝12 y＋25 x
 match count : 0.0
@@ -75,7 +75,7 @@ keys len:1
 step 答：159 元
 match count : 1.0
 正確率 1.0
-solution 3 正確率 : 0.333333333333
+solution 3 正確率 : 0.416666666667
 
 solution 4
 keys len:2
@@ -104,6 +104,4 @@ match count : 1.0
 正確率 1.0
 solution 4 正確率 : 0.333333333333
 
-
-
-Stroke_50正確率 0.4
+Stroke_50正確率 0.6

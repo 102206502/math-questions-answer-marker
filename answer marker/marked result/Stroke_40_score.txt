@@ -1,8 +1,8 @@
 solution 1
 keys len:1
 step 設買x枝鉛筆，( 10－x ) 枝原子筆
-match count : 0.0
-正確率 0.0
+match count : 1.0
+正確率 1.0
 keys len:1
 step 12x+25 ( 10-x )+52=12 ( 10-x )+25x
 match count : 0.0
@@ -22,14 +22,14 @@ keys len:1
 step 答：159 元
 match count : 1.0
 正確率 1.0
-solution 1 正確率 : 0.2
+solution 1 正確率 : 0.4
 
 solution 2
 keys len:1
 step 設買x枝原子筆，( 10－x ) 枝鉛筆
 match count : 1.0
 正確率 1.0
-keys len:2
+keys len:1
 step 12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )
 match count : 0.0
 正確率 0.0
@@ -53,16 +53,16 @@ solution 2 正確率 : 0.4
 solution 3
 keys len:2
 step 設買x枝鉛筆，y 枝原子筆
-match count : 0.0
-正確率 0.0
+match count : 1.0
+正確率 0.5
 keys len:1
 step 12x＋25 y ＋52＝12 y＋25 x
 match count : 0.0
 正確率 0.0
 keys len:1
 step x+y=10
-match count : 0.0
-正確率 0.0
+match count : 1.0
+正確率 1.0
 keys len:2
 step x-y=4, x+y=10,x=7,y=3
 match count : 0.0
@@ -75,7 +75,7 @@ keys len:1
 step 答：159 元
 match count : 1.0
 正確率 1.0
-solution 3 正確率 : 0.166666666667
+solution 3 正確率 : 0.416666666667
 
 solution 4
 keys len:2
@@ -88,8 +88,8 @@ match count : 0.0
 正確率 0.0
 keys len:1
 step x+y=10
-match count : 0.0
-正確率 0.0
+match count : 1.0
+正確率 1.0
 keys len:2
 step x-y=-4, x+y=10, x=3,y=7
 match count : 0.0
@@ -102,8 +102,6 @@ keys len:1
 step 答：159 元
 match count : 1.0
 正確率 1.0
-solution 4 正確率 : 0.25
+solution 4 正確率 : 0.416666666667
 
-
-
-Stroke_40正確率 0.4
+Stroke_40正確率 0.416666666667
