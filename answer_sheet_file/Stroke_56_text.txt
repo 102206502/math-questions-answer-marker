@@ -1,4 +1,0 @@
-令水面變 h 公分, 水桶,柱子底面半徑 2 r、 r
-h=\dfrac {\left( 2r\right) ^{2}\pi -r^{2}\pi } {\left( 2r\right) ^{2}\pi }\times 12=\dfrac {3\pi r^{2}} {\pi r^{2}}\times 3=9
-Ai 9 公分
-
