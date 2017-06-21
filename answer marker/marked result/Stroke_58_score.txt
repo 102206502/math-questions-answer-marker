@@ -13,4 +13,6 @@ match count : 0.0
 正確率 0.0
 solution 1 正確率 : 0.0
 
+
+
 Stroke_58正確率 0.0
