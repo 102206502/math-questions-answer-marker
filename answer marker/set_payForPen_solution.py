@@ -92,11 +92,8 @@ temp_step.addKey(r'(設|令).*買\s*(x|X)\s*(枝|支)原子筆')
 temp_step.addKey(r'(設|令).*(y|Y)\s*(枝|支)鉛筆')
 temp_solution.add_step(temp_step)
 
-temp_step = AnswerMarkerer.StepOfSolution('12y＋25 x ＋52＝12 x＋25 y', '列方程式')
+temp_step = AnswerMarkerer.StepOfSolution('12y＋25 x ＋52＝12 x＋25 y, x+y=10', '列方程式')
 temp_step.addKey(r'25x\s*\+\s*12y\s*\+\s*52\s*=\s*25\s*y\s*\+\s*12\s*x')
-temp_solution.add_step(temp_step)
-
-temp_step = AnswerMarkerer.StepOfSolution('x+y=10', '列方程式')
 temp_step.addKey(r'\s*x\s*\+y=10')
 temp_solution.add_step(temp_step)
 
