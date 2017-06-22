@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+from datetime import datetime
 
 class QuestionSolutions(object):
 	"""一個題目，內含一個以上的解題法"""
@@ -83,18 +84,31 @@ class MathSolution(object):
 		self.steps.append(step)
 
 	def get_score(self, answer_lines, time_lines, output_file):
+		FMT = '%H:%M:%S.%f0\n'
 		step_scores = 0.0
 		temp_step_type = 'No match'
+		temp_step_time = datetime.strptime('00:00:00.0000000\n', FMT)
+		# print('time init '+temp_step_time.strftime(FMT))
+
 		for line_idx, ans_line in enumerate(answer_lines):
 			for step in self.steps:
 				step_score = step.get_score(ans_line, time_lines, output_file)
 				step_scores += step_score
 				if step_score > 0:
+					print('last step time '+temp_step_time.strftime(FMT))
+					# output_file.write('total '+temp_step_time.strftime(FMT))
+					temp_step_time = datetime.strptime(time_lines[line_idx], FMT)
+					# print('new step time:'+temp_step_time.strftime(FMT))
 					temp_step_type = step.step_type
+				else:
+					# 和上個時間相加
+					temp_delta = datetime.strptime(time_lines[line_idx], FMT) - datetime.strptime('00:00:00.0000000\n', FMT)
+					print temp_delta
+					temp_step_time += temp_delta
 				if step_score >= 1:
 					break
 			output_file.write(temp_step_type + ', line ' + str(line_idx) + ', ' + time_lines[line_idx])
-			print(temp_step_type + ', line ' + str(line_idx) + ', ' + time_lines[line_idx] + '\n')
+			# print(temp_step_type + ', line ' + str(line_idx) + ', ' + time_lines[line_idx] + '\n')
 
 		score = step_scores/len(self.steps)
 		return score
@@ -161,8 +175,8 @@ class StepOfSolution(object):
 
 		score = 0.0
 		score = match_count/len(self.keys)
-		if score > 0:
-			print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
+		# if score > 0:
+		# 	print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
 
 		# print 'step ' + self.content + '\nmatch count : ' + str(match_count) + '\n正確率 ' + str(score)
 		return score
