@@ -61,9 +61,7 @@ class QuestionSolutions(object):
 			line = file.readline()
 			if not line or line == '\n':
 				break
-
 			str_buffer+=line
-			# lines.append(line)
 		file.close()
 		lines = str_buffer.split('\n')
 		if lines[len(lines)-1] == '':
@@ -96,16 +94,23 @@ class MathSolution(object):
 		for line_idx, ans_line in enumerate(answer_lines):
 			print 'line', line_idx, ans_line
 			for step_idx, step in enumerate(self.steps):
-				step_score = step.get_score(ans_line, time_lines, output_file)
-				step_scores += step_score
-				if step_score > 0:
+				line_score = step.get_score(ans_line, time_lines, output_file)
+				step_scores += line_score
+				if line_score > 0:
 					if temp_step_type == step.step_type:
 						# 和上個時間相加
 						temp_delta = datetime.strptime(time_lines[line_idx], FMT) - datetime.strptime('00:00:00.0000000', FMT)
 						temp_step_time += temp_delta
+						step_score += line_score
+						print 'step_score += to', step_score
 					else:
 						if line_idx > 0:
-							output_file.write('total '+temp_step_time.strftime(FMT)+'\n')
+							if temp_step_type != '計算':
+								output_file.write('total '+temp_step_time.strftime(FMT)+', 正確率 '+str(step_score)+'\n')
+							else:
+								output_file.write('total '+temp_step_time.strftime(FMT)+'\n')
+						step_score = line_score
+						print 'step_score =', step_score
 						temp_step_time = datetime.strptime(time_lines[line_idx], FMT)
 						temp_step_type = step.step_type
 					break
@@ -117,12 +122,15 @@ class MathSolution(object):
 					else:
 						temp_step_type = '計算'
 						if line_idx > 0:
-							output_file.write('total '+temp_step_time.strftime(FMT)+'\n')
+							output_file.write('total '+temp_step_time.strftime(FMT)+', 正確率 '+str(step_score)+'\n')
 						temp_step_time = datetime.strptime(time_lines[line_idx], FMT)
-			# to_write_str = 
-			output_file.write(temp_step_type+', line '+str(line_idx)+', '+time_lines[line_idx]+', 正確率 '+str(step_score)+'\n')
+			output_file.write(temp_step_type+', line '+str(line_idx)+', '+time_lines[line_idx]+'\n')
+			
 			if line_idx == len(answer_lines)-1:
-				output_file.write('total '+temp_step_time.strftime(FMT)+'\n')
+				if temp_step_type != '計算':
+					output_file.write('total '+temp_step_time.strftime(FMT)+', 正確率 '+str(step_score)+'\n')
+				else:
+					output_file.write('total '+temp_step_time.strftime(FMT)+'\n')
 
 		score = step_scores/len(self.steps)
 		return score
@@ -176,7 +184,7 @@ class StepOfSolution(object):
 
 		for key in self.keys:
 			matches = re.finditer(key, answer)
-			print key, answer
+			# print key, answer
 			result = False
 
 			for matchNum, match in enumerate(matches):
@@ -191,7 +199,7 @@ class StepOfSolution(object):
 		score = match_count/len(self.keys)
 		# if score > 0:
 		# 	print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
-		print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
+		# print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
 		return score
 
 
