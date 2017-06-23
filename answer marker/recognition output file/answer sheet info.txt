@@ -179,7 +179,7 @@ Stroke_65
 question data : payForPen
 image expect correct : all
 solution : 3
-recognition error on key : 0
+recognition error on key : 1
 
 -------------------------------
 Stroke_66
