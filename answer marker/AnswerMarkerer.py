@@ -40,10 +40,10 @@ class QuestionSolutions(object):
 		for solution_count, solution in enumerate(self.math_solutions):
 			solution_count += 1
 			output_file.write('solution ' + str(solution_count) + '\n')
-			print 'solution ' + str(solution_count) + '\n'
+			# print 'solution ' + str(solution_count) + '\n'
 			solution_score = solution.get_score(answer_lines, time_lines, output_file)
 			output_file.write('solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n')
-			print 'solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n'
+			# print 'solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n'
 			if solution_score > max_score:
 				max_score = solution_score
 
@@ -66,7 +66,7 @@ class QuestionSolutions(object):
 		lines = str_buffer.split('\n')
 		if lines[len(lines)-1] == '':
 			del  lines[-1]
-		print 'read file\n', lines
+		# print 'read file\n', lines
 
 		return lines
 
@@ -92,7 +92,7 @@ class MathSolution(object):
 		temp_step_time = datetime.strptime('00:00:00.0000000', FMT)
 		temp_step_type = '計算'
 		for line_idx, ans_line in enumerate(answer_lines):
-			print 'line', line_idx, ans_line
+			# print 'line', line_idx, ans_line
 			for step_idx, step in enumerate(self.steps):
 				line_score = step.get_score(ans_line, time_lines, output_file)
 				step_scores += line_score
@@ -102,7 +102,7 @@ class MathSolution(object):
 						temp_delta = datetime.strptime(time_lines[line_idx], FMT) - datetime.strptime('00:00:00.0000000', FMT)
 						temp_step_time += temp_delta
 						step_score += line_score
-						print 'step_score += to', step_score
+						# print 'step_score += to', step_score
 					else:
 						if line_idx > 0:
 							if temp_step_type != '計算':
@@ -110,7 +110,7 @@ class MathSolution(object):
 							else:
 								output_file.write(temp_step_type+', '+temp_step_time.strftime(FMT)+'\n')
 						step_score = line_score
-						print 'step_score =', step_score
+						# print 'step_score =', step_score
 						temp_step_time = datetime.strptime(time_lines[line_idx], FMT)
 						temp_step_type = step.step_type
 					break

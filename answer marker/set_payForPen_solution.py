@@ -90,8 +90,9 @@ temp_step.addKey(r'(設|令).*(y|Y)\s*(枝|支)鉛筆')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12y＋25 x ＋52＝12 x＋25 y, x+y=10', '列方程式')
-temp_step.addKey(r'25x\s*\+\s*12y\s*\+\s*52\s*=\s*25\s*y\s*\+\s*12\s*x')
-temp_step.addKey(r'\s*x\s*\+y=10')
+# temp_step.addKey(r'25x\s*\+\s*12y\s*\+\s*52\s*=\s*25\s*y\s*\+\s*12\s*x')
+temp_step.addKey(r'(25x\s*\+\s*12y\s*\+\s*52\s*=\s*25\s*y\s*\+\s*12\s*x)|(25x\s*\+\s*12y\s*=\s*25\s*y\s*\+\s*12\s*x-\s*52\s*)|(12y\s*\+\s*25x\s*=\s*25\s*y\s*\+\s*12\s*x\s*-\s*52\s*)')
+temp_step.addKey(r'(\s*x\s*\+\s*y\s*=\s*10)|(\s*y\s*\+\s*x\s*=\s*10)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('x-y=-4, x+y=10, x=3,y=7', '算出方程式解')

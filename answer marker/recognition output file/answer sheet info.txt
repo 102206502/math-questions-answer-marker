@@ -107,7 +107,7 @@ Stroke_50
 question data : payForPen
 image expect correct : all
 solution : 4**   (solution 8+4)
-recognition error on key : 1
+recognition error on key : 2
 student state : well
 
 -------------------------------
