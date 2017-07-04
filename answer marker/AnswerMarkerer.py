@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 import re
 from datetime import datetime
+import time_plus
 
 class QuestionSolutions(object):
 	"""一個題目，內含一個以上的解題法"""
 	def __init__(self, question_name):
 		self.question_name = question_name
 		self.math_solutions = []
+		self.score = 0.0
+		self.hit_solution = 0
 
 	'''依據本題儲存之解法，計算本題分數
 
@@ -21,37 +24,58 @@ class QuestionSolutions(object):
 		pseudocode 
 		-----------
 		# 將作答檔案逐行放進list
+		# 將作答時間檔案逐行放進list
 		# 完成answer_lines
 		# 
 		# max_score = 0
 		# 
 		# for each math solution in math solutions
+		# 	計算solution分數
 		# 	max_score = 取最高分
 		# 	if answer marked as 100%(=1)
 		# 		break
 		# end for
 		# return max_score
 	'''
-	def get_score(self, answer_sheet_file_name, line_finish_time_file_name, output_file):
+	def get_score(self, answer_sheet_file_name, line_finish_time_file_name):
+		self.clean_score()
 		answer_lines = self.read_file_in_lines(answer_sheet_file_name)
 		time_lines = self.read_file_in_lines(line_finish_time_file_name)
 		max_score = 0.0
 		# calculate score
 		for solution_count, solution in enumerate(self.math_solutions):
 			solution_count += 1
-			output_file.write('solution ' + str(solution_count) + '\n')
+			# output_file.write('solution ' + str(solution_count) + '\n')
 			# print 'solution ' + str(solution_count) + '\n'
-			solution_score = solution.get_score(answer_lines, time_lines, output_file)
-			output_file.write('solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n')
+			solution_score = solution.get_score(answer_lines, time_lines)
+			# output_file.write('solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n')
 			# print 'solution ' + str(solution_count) + ' 正確率 : ' + str(solution_score) + '\n\n'
 			if solution_score > max_score:
 				max_score = solution_score
+				self.hit_solution = solution_count
+				self.score = max_score
 
 			if max_score >= 1:
 				break
 
-
 		return max_score
+
+	def clean_score(self):
+		self.score = 0.0
+		self.hit_solution = 0
+
+	'''回傳正確解法的內容'''
+	def get_marked_data(self):
+		temp_list = self.math_solutions[self.hit_solution-1].get_marked_sln_data()
+		return temp_list
+
+	def write_marked_result(self, file_out):
+		marked_result_list = self.get_marked_data()
+
+		for indx in range(len(marked_result_list)-1):
+			step_data_list = marked_result_list[indx]
+			file_out.write(step_data_list[0] + ', 正確率 ' + str(step_data_list[1]) + ', ' + step_data_list[2] + '\n')# 步驟 正確率 累計時間
+
 
 	def read_file_in_lines(self, file_name):
 		lines = []
@@ -67,7 +91,6 @@ class QuestionSolutions(object):
 		if lines[len(lines)-1] == '':
 			del  lines[-1]
 		# print 'read file\n', lines
-
 		return lines
 
 	def addSolution(self, solution):
@@ -78,14 +101,48 @@ class MathSolution(object):
 	def __init__(self):
 		self.step_count = 0
 		self.steps = []
+		self.score = 0.0
 		#
-
+	'''增加一個步驟
+		
+		paramater
+		----------
+			step : StepOfSolution
+	'''
 	def add_step(self, step):
 		self.step_count += 1
 		step.number = self.step_count
 		self.steps.append(step)
 
-	def get_score(self, answer_lines, time_lines, output_file):
+	'''回傳 步驟資料 解法正確率'''
+	def get_marked_sln_data(self):
+		temp_list = []
+		for step in self.steps:
+			temp_list.append(step.get_marked_step_data())
+		temp_list.append(self.score)
+		return temp_list
+
+	'''在用本解法計算對某份學生答案的正確率之前，先將步驟分數等歸零'''
+	def clean_score(self):
+		self.score = 0.0
+		for step in self.steps:
+			step.score = 0.0
+			step.cost_time = '00:00:00.0000000'
+			step.hit_lines = []
+	'''計算本解法分數
+
+		pseudocode 
+		-----------
+		先將步驟分數等歸零
+		for 行 in 作答檔案
+			尋找對於各步驟的正確率
+			if 此步驟正確率非零
+				break
+			end if
+		end for
+		'''
+	def get_score(self, answer_lines, time_lines):
+		self.clean_score()
 		FMT = '%H:%M:%S.%f0'
 		step_scores = 0.0
 		step_score = 0.0
@@ -94,46 +151,13 @@ class MathSolution(object):
 		for line_idx, ans_line in enumerate(answer_lines):
 			# print 'line', line_idx, ans_line
 			for step_idx, step in enumerate(self.steps):
-				line_score = step.get_score(ans_line, time_lines, output_file)
-				step_scores += line_score
-				if line_score > 0:
-					if temp_step_type == step.step_type:
-						# 和上個時間相加
-						temp_delta = datetime.strptime(time_lines[line_idx], FMT) - datetime.strptime('00:00:00.0000000', FMT)
-						temp_step_time += temp_delta
-						step_score += line_score
-						# print 'step_score += to', step_score
-					else:
-						if line_idx > 0:
-							if temp_step_type != '計算':
-								output_file.write(temp_step_type+', '+temp_step_time.strftime(FMT)+', 正確率 '+str(step_score)+'\n')
-							else:
-								output_file.write(temp_step_type+', '+temp_step_time.strftime(FMT)+'\n')
-						step_score = line_score
-						# print 'step_score =', step_score
-						temp_step_time = datetime.strptime(time_lines[line_idx], FMT)
-						temp_step_type = step.step_type
+				step_score = step.get_score(ans_line, time_lines[line_idx], line_idx)
+				if step_score > 0:
+					step_scores += step_score
 					break
-				elif step_idx == len(self.steps)-1:# 若本行文件完全不屬任一步驟
-					if temp_step_type == '計算':
-						# 和上個時間相加
-						temp_delta = datetime.strptime(time_lines[line_idx], FMT) - datetime.strptime('00:00:00.0000000', FMT)
-						temp_step_time += temp_delta
-					else:
-						if line_idx > 0:
-							output_file.write(temp_step_type+', '+temp_step_time.strftime(FMT)+', 正確率 '+str(step_score)+'\n')
-						temp_step_type = '計算'
-						temp_step_time = datetime.strptime(time_lines[line_idx], FMT)
-			# output_file.write(temp_step_type+', line '+str(line_idx)+', '+time_lines[line_idx]+'\n')
-			
-			if line_idx == len(answer_lines)-1:
-				if temp_step_type != '計算':
-					output_file.write(temp_step_type+', '+temp_step_time.strftime(FMT)+', 正確率 '+str(step_score)+'\n')
-				else:
-					output_file.write(temp_step_type+', '+temp_step_time.strftime(FMT)+'\n')
 
-		score = step_scores/len(self.steps)
-		return score
+		self.score = step_scores/len(self.steps)
+		return self.score
 
 class StepOfSolution(object):
 	"""一種解法中的一個步驟
@@ -156,6 +180,9 @@ class StepOfSolution(object):
 		self.number = 0 # 0相當於未設定順序編號
 		self.step_type = ''
 		self.step_type = step_type
+		self.score = 0.0
+		self.cost_time = '00:00:00.0000000'
+		self.hit_lines = [] # 符合步驟正規式的行號
 
 	'''加入關鍵正規式
 		Parameter
@@ -164,6 +191,19 @@ class StepOfSolution(object):
 	'''
 	def addKey(self, key):
 		self.keys.append(key)
+
+	'''回傳 步驟 正確率 累計時間 符合行號 的list'''
+	def get_marked_step_data(self):
+		temp_list = []
+		temp_list.append(self.step_type)
+		temp_list.append(self.score)
+		temp_list.append(self.cost_time)
+		temp_list.append(self.hit_lines)
+		print temp_list
+
+
+		return temp_list
+
 
 	def add_by_tmp_keys():
 		#while(true):
@@ -176,10 +216,13 @@ class StepOfSolution(object):
 		----------
 		answer : string
 			a line of the answer sheet
-		output_file : file obj
-			marked result file
+		time_line : string
+			finish time of a line of the answer sheet finish time
+		line_idx : int
+			the index of the line of the answer
 	'''
-	def get_score(self, answer, time_lines, output_file):
+	def get_score(self, answer, time_line, line_idx):
+		FMT = '%H:%M:%S.%f0'
 		match_count = 0.0
 
 		for key in self.keys:
@@ -197,6 +240,11 @@ class StepOfSolution(object):
 
 		score = 0.0
 		score = match_count/len(self.keys)
+		if score > 0:
+			self.score += score# 讓每個步驟各自累算得分，之後再在列出個步驟正確率時使用(但是如何累算時間?)
+			self.hit_lines.append(line_idx)
+			self.cost_time = time_plus.time_str_plus(FMT, self.cost_time, time_line)
+
 		# if score > 0:
 		# 	print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
 		# print self.step_type, '\nstep ' + self.content + '\n正確率 ' + str(score)
