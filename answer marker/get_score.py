@@ -42,3 +42,4 @@ file_q_mode = open("question_mode.txt")
 question_mode = int(file_q_mode.read())# 1 : bucket, 2: payForPen
 score_get, math_question = get_mark_score(file_id, question_mode)
 write_marked_result(math_question, file_id)
+math_question.total_cost_time()

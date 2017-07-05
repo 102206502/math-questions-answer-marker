@@ -7,9 +7,11 @@ class QuestionSolutions(object):
 	"""一個題目，內含一個以上的解題法"""
 	def __init__(self, question_name):
 		self.question_name = question_name
+		self.time_lines = []
 		self.math_solutions = []
 		self.score = 0.0
 		self.hit_solution = 0
+
 
 	'''依據本題儲存之解法，計算本題分數
 
@@ -41,6 +43,7 @@ class QuestionSolutions(object):
 		self.clean_score()
 		answer_lines = self.read_file_in_lines(answer_sheet_file_name)
 		time_lines = self.read_file_in_lines(line_finish_time_file_name)
+		self.time_lines = time_lines
 		max_score = 0.0
 		# calculate score
 		for solution_count, solution in enumerate(self.math_solutions):
@@ -64,10 +67,39 @@ class QuestionSolutions(object):
 		self.score = 0.0
 		self.hit_solution = 0
 
+	def total_cost_time(self):
+		FMT = '%H:%M:%S.%f0'
+		total_time = '00:00:00.0000000'
+		for time in self.time_lines:
+			total_time = time_plus.time_str_plus(FMT, total_time, time)
+		print total_time
+		return total_time
+
 	'''回傳正確解法的內容'''
 	def get_marked_data(self):
 		temp_list = self.math_solutions[self.hit_solution-1].get_marked_sln_data()
+		print temp_list
+		# temp_list = self.refine_step_finish_time(self.time_lines, temp_list)
 		return temp_list
+
+	# def refine_step_finish_time(self, time_lines, marked_data):
+	# 	plus_time = False
+	# 	appended_time_line = []
+	# 	temp_step_time = '00:00:00.0000000'
+	# 	for time_line in time_lines:
+	# 		appended_time_line.append(False)
+	# 	steps = self.math_solutions[self.hit_solution-1].steps
+	# 	for step_num, step in enumerate(steps):
+	# 		match = re.finditer(r'(設定變數)|(寫答案)|(列方程式)', step.step_type)
+	# 		if not match and step.score <= 0:
+	# 			plus_time = True
+	# 		elif step.score > 0:
+	# 			for i in range(len(step.hit_lines)):
+	# 				appended_time_line[step.hit_lines[i]] = True
+	# 		else:
+
+	# 	return marked_data
+
 
 	def write_marked_result(self, file_out):
 		marked_result_list = self.get_marked_data()
@@ -146,7 +178,8 @@ class MathSolution(object):
 		self.clean_score()
 		FMT = '%H:%M:%S.%f0'
 		step_scores = 0.0
-		temp_step_time = datetime.strptime('00:00:00.0000000', FMT)
+		temp_step_time = '00:00:00.0000000'
+		temp_hit_line = []
 		temp_step_type = '計算'
 		for line_idx, ans_line in enumerate(answer_lines):
 			# print 'line', line_idx, ans_line
@@ -154,29 +187,20 @@ class MathSolution(object):
 				step_score = step.get_score(ans_line, time_lines[line_idx], line_idx)
 				if step_score > 0:
 					step_scores += step_score
+					match = re.search(r'(設定變數)|(寫答案)|(列方程式)', step.step_type)
+					if not match:
+						print 'add all', temp_step_time
+						step.cost_time = time_plus.time_str_plus(FMT, step.cost_time, temp_step_time)
+						step.hit_lines += temp_hit_line
+						temp_step_time = '00:00:00.0000000'
+						temp_hit_line = []
 					break
-
+				elif step_idx == len(self.steps) - 1:
+					print 'plus ', time_lines[line_idx]
+					temp_step_time = time_plus.time_str_plus(FMT, temp_step_time, time_lines[line_idx])
+					temp_hit_line.append(line_idx)
 		self.score = step_scores/len(self.steps)
 		return self.score
-
-def refine_step_finish_time(self, time_lines):
-		plus_time = False
-		appended_time_line = []
-		temp_step_time = '00:00:00.0000000'
-		for time_line in time_lines:
-			appended_time_line.append(False)
-		for step_num, step in enumerate(self.steps):
-			# match = re.finditer(r'(設定變數)|(寫答案)|(列方程式)', step.step_type)
-			# if not match and step.score <= 0:
-			# 	plus_time = True
-			# else:
-			for line_indx in range(len(step.hit_lines)):
-				appended_time_line[line_indx] = True
-
-		print appended_time_line
-
-		return
-
 
 class StepOfSolution(object):
 	"""一種解法中的一個步驟
