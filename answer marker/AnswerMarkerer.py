@@ -196,7 +196,6 @@ class MathSolution(object):
 						temp_hit_line = []
 					break
 				elif step_idx == len(self.steps) - 1:
-					print 'plus ', time_lines[line_idx]
 					temp_step_time = time_plus.time_str_plus(FMT, temp_step_time, time_lines[line_idx])
 					temp_hit_line.append(line_idx)
 		self.score = step_scores/len(self.steps)
