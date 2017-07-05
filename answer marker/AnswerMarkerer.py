@@ -75,6 +75,7 @@ class QuestionSolutions(object):
 		for indx in range(len(marked_result_list)-1):
 			step_data_list = marked_result_list[indx]
 			file_out.write(step_data_list[0] + ', 正確率 ' + str(step_data_list[1]) + ', ' + step_data_list[2] + '\n')# 步驟 正確率 累計時間
+		return marked_result_list
 
 
 	def read_file_in_lines(self, file_name):
@@ -145,7 +146,6 @@ class MathSolution(object):
 		self.clean_score()
 		FMT = '%H:%M:%S.%f0'
 		step_scores = 0.0
-		step_score = 0.0
 		temp_step_time = datetime.strptime('00:00:00.0000000', FMT)
 		temp_step_type = '計算'
 		for line_idx, ans_line in enumerate(answer_lines):
@@ -158,6 +158,25 @@ class MathSolution(object):
 
 		self.score = step_scores/len(self.steps)
 		return self.score
+
+def refine_step_finish_time(self, time_lines):
+		plus_time = False
+		appended_time_line = []
+		temp_step_time = '00:00:00.0000000'
+		for time_line in time_lines:
+			appended_time_line.append(False)
+		for step_num, step in enumerate(self.steps):
+			# match = re.finditer(r'(設定變數)|(寫答案)|(列方程式)', step.step_type)
+			# if not match and step.score <= 0:
+			# 	plus_time = True
+			# else:
+			for line_indx in range(len(step.hit_lines)):
+				appended_time_line[line_indx] = True
+
+		print appended_time_line
+
+		return
+
 
 class StepOfSolution(object):
 	"""一種解法中的一個步驟
@@ -199,9 +218,6 @@ class StepOfSolution(object):
 		temp_list.append(self.score)
 		temp_list.append(self.cost_time)
 		temp_list.append(self.hit_lines)
-		print temp_list
-
-
 		return temp_list
 
 
