@@ -3,6 +3,8 @@ import AnswerMarkerer
 import set_bucket_solution
 import set_payForPen_solution
 import get_score
+import time_plus
+
 
 file_nums_question1 = [37, 38, 52, 53, 55, 56, 58]
 file_nums_question2 = [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 61, 62, 63, 64, 65, 66]
@@ -38,6 +40,21 @@ def get_average_steps_score(question_file_nums, marked_result_list):
 		steps_avg_score.append(total/(len(marked_result_list)))
 	
 	return steps_avg_score
+
+'''得出每個步驟的平均時間'''
+def get_average_steps_time(question_file_nums, marked_result_list):
+	FMT = '%H:%M:%S.%f0'
+	steps_avg_time = []
+	step_len = len(marked_result_list[0]) - 1
+	for i in range(step_len):
+		total = '00:00:00.0000000'
+		for idx_file_num, marked_result in enumerate(marked_result_list):
+			cur_time = marked_result[i][2]
+			total = time_plus.time_str_plus(FMT, total, cur_time)
+		steps_avg_time.append(time_plus.time_str_divide(FMT, total, ))
+	
+	return steps_avg_time
+
 
 
 '''製作解答特徵的陣列'''

@@ -194,6 +194,7 @@ class MathSolution(object):
 						step.hit_lines += temp_hit_line
 						temp_step_time = '00:00:00.0000000'
 						temp_hit_line = []
+					# elif temp_step_time != '00:00:00.0000000' and :
 					break
 				elif step_idx == len(self.steps) - 1:
 					temp_step_time = time_plus.time_str_plus(FMT, temp_step_time, time_lines[line_idx])
