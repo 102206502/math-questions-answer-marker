@@ -72,13 +72,13 @@ class QuestionSolutions(object):
 		total_time = '00:00:00.0000000'
 		for time in self.time_lines:
 			total_time = time_plus.time_str_plus(FMT, total_time, time)
-		print total_time
+		# print total_time
 		return total_time
 
 	'''回傳正確解法的內容'''
 	def get_marked_data(self):
 		temp_list = self.math_solutions[self.hit_solution-1].get_marked_sln_data()
-		print temp_list
+		# print temp_list
 		# temp_list = self.refine_step_finish_time(self.time_lines, temp_list)
 		return temp_list
 
@@ -189,7 +189,6 @@ class MathSolution(object):
 					step_scores += step_score
 					match = re.search(r'(設定變數)|(寫答案)|(列方程式)', step.step_type)
 					if not match:
-						print 'add all', temp_step_time
 						step.cost_time = time_plus.time_str_plus(FMT, step.cost_time, temp_step_time)
 						step.hit_lines += temp_hit_line
 						temp_step_time = '00:00:00.0000000'

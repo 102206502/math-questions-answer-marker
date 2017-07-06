@@ -18,7 +18,11 @@ def time_str_plus(FMT, time_str1, time_str2):
 
 	return final_time_str
 
+
 def time_str_divide(FMT, time_str, div_num):
 	temp_delta = datetime.strptime(time_str, FMT) - time_zero
 	time_avg = temp_delta/div_num
-	return time_avg
+	temp_time = datetime.strptime('00:00:00', '%H:%M:%S')
+	temp_time += time_avg
+	final_time_str = temp_time.strftime(FMT)
+	return final_time_str
