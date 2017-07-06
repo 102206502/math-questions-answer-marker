@@ -4,6 +4,7 @@ import set_bucket_solution
 import set_payForPen_solution
 import get_score
 import time_plus
+import numpy as np
 
 
 file_nums_question1 = [37, 38, 52, 53, 55, 56, 58]
@@ -43,6 +44,7 @@ def get_average_cost_time(question_file_nums, marked_results_list):
 	avg_time = time_plus.time_str_divide(FMT, total, len(question_file_nums))
 	print 'avg_time', avg_time
 	return avg_time
+
 '''得出每個步驟的平均'''
 def get_average_steps_score(question_file_nums, marked_results_list):
 	steps_avg_score = []
@@ -84,6 +86,18 @@ def make_feature_vector(question_file_nums, marked_results_list):
 	steps_avg_time = get_average_steps_time(question_file_nums, marked_results_list)
 
 	# 取出單份答案的資料
+	for idx_file_num, marked_result in enumerate(marked_results_list):
+		step_status_list = []# 對錯 分數 時間
+		step_is_correct_list = []
+		step_times = []
+		step_len = len(marked_result)-2
+		for i in range(step_len):
+			if marked_result[i][1] == 0 :
+				step_is_correct_list.append(-1)
+			else:
+				step_is_correct_list.append(0)
+			step_times.append(XXXXXX)
+
 
 
 ############################################################################################

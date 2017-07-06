@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-from datetime import datetime
 import time_plus
 
 class QuestionSolutions(object):

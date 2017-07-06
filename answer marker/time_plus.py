@@ -26,3 +26,8 @@ def time_str_divide(FMT, time_str, div_num):
 	temp_time += time_avg
 	final_time_str = temp_time.strftime(FMT)
 	return final_time_str
+
+def time_str_to_float(FMT, time_str):
+	temp_delta = datetime.strptime(time_str, FMT) - time_zero
+	time_float = temp_delta.total_seconds()
+	return time_float
