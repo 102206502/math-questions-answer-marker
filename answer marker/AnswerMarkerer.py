@@ -149,9 +149,12 @@ class MathSolution(object):
 	'''回傳 步驟資料 解法正確率'''
 	def get_marked_sln_data(self):
 		temp_list = []
-		for step in self.steps:
+		for i, step in enumerate(self.steps):
 			temp_list.append(step.get_marked_step_data())
-		temp_list.append(self.score)
+		if temp_list[len(self.steps)-1][1] < 1:
+			temp_list.append(self.score)
+		else:
+			temp_list.append(1.0)
 		return temp_list
 
 	'''在用本解法計算對某份學生答案的正確率之前，先將步驟分數等歸零'''
