@@ -79,42 +79,51 @@ def get_average_steps_time(question_file_nums, marked_results_list):
 '''製作解答特徵的陣列'''
 def make_feature_vector_all(question_file_nums, marked_results_list):
 	# 取出多份檔案的平均值
+	all_feature_vector_list = []
+	avg_score = get_average_score(question_file_nums, marked_results_list)
 	avg_time = get_average_cost_time(question_file_nums, marked_results_list)
 	steps_avg_score = get_average_steps_score(question_file_nums, marked_results_list)
 	steps_avg_time = get_average_steps_time(question_file_nums, marked_results_list)
 
 	# 取出單份答案的資料
 	for idx_file_num, marked_result in enumerate(marked_results_list):
-		step_status_list = make_feature_vector(idx_file_num, marked_result)
-		# the correctness of this answer(by the last step)
-		if marked_result[len(marked_result)-2] == 0 :
-			step_is_correct_list.append(-1)
-		else:
-			step_is_correct_list.append(1)
+		step_status_list = make_step_feature_vector(idx_file_num, marked_result)
+		feature_vector = step_status_list
+		# print(feature_vector)
+		feature_vector += steps_avg_score
+		# print(feature_vector)
+		feature_vector += steps_avg_time
+		# print(feature_vector)
+		feature_vector.append(marked_result[len(marked_result)-2])
+		feature_vector.append(avg_score)
+		# print(feature_vector)
+		feature_vector.append(time_plus.time_str_to_float(FMT, marked_result[len(marked_result)-1]))
+		feature_vector.append(time_plus.time_str_to_float(FMT, avg_time))
+		# print(feature_vector)
+		all_feature_vector_list.append(feature_vector)
 
-def make_feature_vector(idx_file_num, marked_result):# 未完成
+	all_feature_vector = np.array(all_feature_vector_list)
+	print(all_feature_vector)
+	print(all_feature_vector.shape)
+	print(type(all_feature_vector))
+
+
+def make_step_feature_vector(idx_file_num, marked_result):# 未完成
 	step_status_list = []# 分數 對錯 時間
-		step_score_list = []
-		step_is_correct_list = []
-		step_times = []
-		step_len = len(marked_result)-2
-		for i in range(step_len):
-			step_score_list.append(marked_result[i][1])# step score of this answer
-			if marked_result[step_len-1][1] >= 1:
-				step_is_correct_list.append(1)# 該步驟錯誤應是因為手寫辨識問題
-			elif marked_result[i][1] >= 1:
-				step_is_correct_list.append(1)# 該步驟正確
-			elif marked_result[i][1] > 0:
-				step_is_correct_list.append(0)# 該步驟不完全正確
-			else:
-				step_is_correct_list.append(-1)# 該步驟完全錯誤
-			step_times.append(marked_result[i][2])# step time of this answer
+	step_score_list = []
+	step_times = []
+	step_len = len(marked_result)-2
+	for i in range(step_len):
+		step_score_list.append(marked_result[i][1])
+		step_times.append(time_plus.time_str_to_float(FMT, marked_result[i][2]))
+
+	step_status_list = step_score_list + step_times
+
 	return step_status_list
 
 ############################################################################################
 
 alist = get_answers_result(file_nums_question2, 2)
-avg_score = get_average_score(file_nums_question2, alist)
 make_feature_vector_all(file_nums_question2, alist)
 # for data in alist:
 # 	print data
