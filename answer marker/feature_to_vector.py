@@ -5,10 +5,13 @@ import set_payForPen_solution
 import get_score
 import time_plus
 import numpy as np
+from sklearn import svm
 
 
+student_state_dic = {'well' : 0, '不會列方程式' : 1, '計算錯誤' : 2, '計算太慢' : 3, '公式不熟' : 4, '完全不會' : 5}
 file_nums_question1 = [37, 38, 52, 53, 55, 56, 58]
-file_nums_question2 = [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 61, 62, 63, 64, 65, 66]
+file_nums_question2 = [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 61, 62, 63, 64, 65, 66, 67]
+student_state_list  = [ 0,  0,  0,  1,  2,  2,  3,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  3]
 FMT = '%H:%M:%S.%f0'
 '''取得同類題目的全部資料'''
 def get_answers_result(question_file_nums, question_mode):
@@ -32,6 +35,7 @@ def get_average_score(question_file_nums, marked_results_list):
 		# print question_file_nums[idx_file_num], cur_score
 		total += cur_score
 	avg_score = total/len(question_file_nums)
+	print 'avg_score', avg_score
 	return avg_score
 
 '''得出所有樣本平均花費時間'''
@@ -39,9 +43,10 @@ def get_average_cost_time(question_file_nums, marked_results_list):
 	total = '00:00:00.0000000'
 	for idx_file_num, marked_result in enumerate(marked_results_list):
 		cur_time = marked_result[len(marked_result)-1]
-		# print question_file_nums[idx_file_num], cur_score
+		print question_file_nums[idx_file_num], cur_time
 		total = time_plus.time_str_plus(FMT, total, cur_time)
 	avg_time = time_plus.time_str_divide(FMT, total, len(question_file_nums))
+	print 'avg_time', avg_time
 	return avg_time
 
 '''得出每個步驟的平均'''
@@ -54,7 +59,7 @@ def get_average_steps_score(question_file_nums, marked_results_list):
 			cur_score = marked_result[i][1]
 			total += cur_score
 		steps_avg_score.append(total/(len(marked_results_list)))
-	
+	print 'steps_avg_score', steps_avg_score
 	return steps_avg_score
 
 '''得出每個步驟的平均時間，去掉時間是0的樣本'''
@@ -74,6 +79,7 @@ def get_average_steps_time(question_file_nums, marked_results_list):
 				non_zero_sample += 1
 		temp_step_avg_time_str = time_plus.time_str_divide(FMT, total, non_zero_sample)
 		steps_avg_time.append(time_plus.time_str_to_float(FMT, temp_step_avg_time_str))
+	print 'steps_avg_time', steps_avg_time
 	return steps_avg_time
 
 '''製作解答特徵的陣列'''
@@ -123,7 +129,6 @@ def make_step_feature_vector(idx_file_num, marked_result):# 未完成
 
 ############################################################################################
 
-alist = get_answers_result(file_nums_question2, 2)
-make_feature_vector_all(file_nums_question2, alist)
-# for data in alist:
-# 	print data
+marked_results_list = get_answers_result(file_nums_question2, 2)
+X_data = make_feature_vector_all(file_nums_question2, marked_results_list)
+Y_data = np.array(student_state_list)

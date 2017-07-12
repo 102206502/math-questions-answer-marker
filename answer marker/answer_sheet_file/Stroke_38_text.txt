@@ -1,4 +1,0 @@
-令水桶與鐵柱底面積、半徑 2m.in
-\dfrac {\left( 2m\right) ^{2}\pi \times 12-m^{2}\pi \times 12} {\left( 2m\right) ^{2}\pi }=\dfrac {36m^{2}\pi } {4m^{2}\pi }=9
-水面高度變為 9公分
-

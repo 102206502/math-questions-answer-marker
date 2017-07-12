@@ -212,3 +212,11 @@ image expect correct : all
 solution : 1
 recognition error on key : 0
 student state : well
+
+-------------------------------
+Stroke_67
+question data : payForPen
+image expect correct : all
+solution : 3
+recognition error on key : 0
+student state : ­pºâ¤ÓºC
