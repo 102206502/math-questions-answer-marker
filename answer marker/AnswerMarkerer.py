@@ -81,25 +81,6 @@ class QuestionSolutions(object):
 		# temp_list = self.refine_step_finish_time(self.time_lines, temp_list)
 		return temp_list
 
-	# def refine_step_finish_time(self, time_lines, marked_data):
-	# 	plus_time = False
-	# 	appended_time_line = []
-	# 	temp_step_time = '00:00:00.0000000'
-	# 	for time_line in time_lines:
-	# 		appended_time_line.append(False)
-	# 	steps = self.math_solutions[self.hit_solution-1].steps
-	# 	for step_num, step in enumerate(steps):
-	# 		match = re.finditer(r'(設定變數)|(寫答案)|(列方程式)', step.step_type)
-	# 		if not match and step.score <= 0:
-	# 			plus_time = True
-	# 		elif step.score > 0:
-	# 			for i in range(len(step.hit_lines)):
-	# 				appended_time_line[step.hit_lines[i]] = True
-	# 		else:
-
-	# 	return marked_data
-
-
 	def write_marked_result(self, file_out):
 		marked_result_list = self.get_marked_data()
 

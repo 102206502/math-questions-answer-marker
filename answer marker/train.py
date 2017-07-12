@@ -8,5 +8,5 @@ Y_data = feature_to_vector.Y_data
 print(Y_data)
 print(Y_data.shape)
 
-clf = svm.SVC()
+clf = svm.SVC(C=10, kernel='rbf', gamma=0.001)
 clf.fit(X_data, Y_data)
