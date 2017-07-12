@@ -10,6 +10,7 @@ question data : bucket
 image expect correct : all
 solution : 1
 recognition error on key : 0
+student state : well
 
 -------------------------------
 Stroke_39
@@ -17,6 +18,7 @@ question data : payForPen
 image expect correct : all
 solution : 1
 recognition error on key : 1
+student state : well
 
 -------------------------------
 Stroke_40
@@ -24,6 +26,7 @@ question data : payForPen
 image expect correct : step 1, 2, 4, 5
 solution : 4
 recognition error on key : 2
+student state : well
 
 -------------------------------
 Stroke_41
@@ -31,6 +34,7 @@ question data : payForPen
 image expect correct : all
 solution : 4
 recognition error on key : 1
+student state : well
 
 -------------------------------
 Stroke_42
@@ -38,6 +42,7 @@ question data : payForPen
 image expect correct : step 1
 solution : 4
 recognition error on key : 0
+student state : 不會列方程式
 
 -------------------------------
 Stroke_43
@@ -45,14 +50,15 @@ question data : payForPen
 image expect correct : step 1, 2
 solution : 4
 recognition error on key : 0
+student state : 計算錯誤
 
 -------------------------------
 Stroke_44
 question data : payForPen
-image expect correct : all
+image expect correct : step 1, 2
 solution : 1
 recognition error on key : 1
-註 列式超出預期解答範圍
+student state : 計算錯誤
 
 -------------------------------
 Stroke_45
@@ -61,20 +67,23 @@ image expect correct : all
 solution : 4
 recognition error on key : 1
 註 列式超出預期解答範圍
+student state : well
 
 -------------------------------
 Stroke_46
 question data : payForPen
-image expect correct : step 1(?
+image expect correct : 0
 solution : 4
 recognition error on key : 1
+student state : 不會列方程式
 
 -------------------------------
 Stroke_47
 question data : payForPen
-image expect correct : step 1, 3
+image expect correct : step 1
 solution : 3
 recognition error on key : 0
+student state : 不會列方程式
 
 -------------------------------
 Stroke_48
@@ -82,6 +91,7 @@ question data : payForPen
 image expect correct : step 1, 3, 4
 solution : 3*   (solution 7)
 recognition error on key : 2
+student state : well
 
 -------------------------------
 Stroke_49
@@ -89,13 +99,15 @@ question data : payForPen
 image expect correct : step 1, 2, 3
 solution : 4**   (solution 8+4)
 recognition error on key : 0
+student state : 瑕疵樣本
 
 -------------------------------
 Stroke_50
 question data : payForPen
 image expect correct : all
 solution : 4**   (solution 8+4)
-recognition error on key : 1
+recognition error on key : 2
+student state : well
 
 -------------------------------
 Stroke_51
@@ -103,6 +115,7 @@ question data : payForPen
 image expect correct : all
 solution : 4***   (solution 8+4+4)
 recognition error on key : 2
+student state : well
 
 -------------------------------
 Stroke_52
@@ -110,13 +123,15 @@ question data : bucket
 image expect correct : all
 solution : 1
 recognition error on key : 2
+student state : well
 
 -------------------------------
 Stroke_53
 question data : bucket
-image expect correct : 0
+image expect correct : step 1, 2
 solution : 1
 recognition error on key : 0
+student state : 計算錯誤
 
 -------------------------------
 Stroke_55
@@ -124,6 +139,7 @@ question data : bucket
 image expect correct : step 1
 solution : 1
 recognition error on key : 1
+student state : 公式不熟
 
 -------------------------------
 Stroke_56
@@ -131,6 +147,7 @@ question data : bucket
 image expect correct : all
 solution : 1
 recognition error on key : 2
+student state : well
 
 -------------------------------
 Stroke_57
@@ -138,6 +155,7 @@ question data : bucket
 image expect correct : step 2, 3
 solution : 1
 recognition error on key : 1
+student state : well, 瑕疵樣本
 
 -------------------------------
 Stroke_58
@@ -145,6 +163,7 @@ question data : bucket
 image expect correct : 0
 solution : 1
 recognition error on key : 0
+student state : 完全不會
 
 -------------------------------
 Stroke_61
@@ -152,6 +171,7 @@ question data : payForPen
 image expect correct : all
 solution : 1
 recognition error on key : 1
+student state : well
 
 -------------------------------
 Stroke_62
@@ -159,6 +179,7 @@ question data : payForPen
 image expect correct : all
 solution : 2
 recognition error on key : 1
+student state : well
 
 -------------------------------
 Stroke_63
@@ -166,6 +187,7 @@ question data : payForPen
 image expect correct : all
 solution : 3
 recognition error on key : 1 line 2
+student state : well
 
 -------------------------------
 Stroke_64
@@ -173,13 +195,15 @@ question data : payForPen
 image expect correct : all
 solution : 4
 recognition error on key : 0
+student state : well
 
 -------------------------------
 Stroke_65
 question data : payForPen
 image expect correct : all
 solution : 3
-recognition error on key : 0
+recognition error on key : 1
+student state : well
 
 -------------------------------
 Stroke_66
@@ -187,3 +211,12 @@ question data : payForPen
 image expect correct : all
 solution : 1
 recognition error on key : 0
+student state : well
+
+-------------------------------
+Stroke_67
+question data : payForPen
+image expect correct : all
+solution : 3
+recognition error on key : 0
+student state : 計算太慢
