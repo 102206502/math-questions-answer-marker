@@ -92,7 +92,7 @@ class QuestionSolutions(object):
 
 	def read_file_in_lines(self, file_name):
 		lines = []
-		file = open(file_name, 'rt')
+		file = open(file_name, 'rt', encoding = 'utf-8')
 		str_buffer = ''
 		while True:
 			line = file.readline()

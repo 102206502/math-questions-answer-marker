@@ -35,7 +35,7 @@ def get_average_score(question_file_nums, marked_results_list):
 		# print question_file_nums[idx_file_num], cur_score
 		total += cur_score
 	avg_score = total/len(question_file_nums)
-	print 'avg_score', avg_score
+	print('avg_score', avg_score)
 	return avg_score
 
 '''得出所有樣本平均花費時間'''
@@ -46,7 +46,7 @@ def get_average_cost_time(question_file_nums, marked_results_list):
 		# print question_file_nums[idx_file_num], cur_time
 		total = time_plus.time_str_plus(FMT, total, cur_time)
 	avg_time = time_plus.time_str_divide(FMT, total, len(question_file_nums))
-	print 'avg_time', avg_time
+	print('avg_time', avg_time)
 	return avg_time
 
 '''得出每個步驟的平均'''
@@ -59,7 +59,7 @@ def get_average_steps_score(question_file_nums, marked_results_list):
 			cur_score = marked_result[i][1]
 			total += cur_score
 		steps_avg_score.append(total/(len(marked_results_list)))
-	print 'steps_avg_score', steps_avg_score
+	print('steps_avg_score', steps_avg_score)
 	return steps_avg_score
 
 '''得出每個步驟的平均時間，去掉時間是0的樣本'''
@@ -79,7 +79,7 @@ def get_average_steps_time(question_file_nums, marked_results_list):
 				non_zero_sample += 1
 		temp_step_avg_time_str = time_plus.time_str_divide(FMT, total, non_zero_sample)
 		steps_avg_time.append(time_plus.time_str_to_float(FMT, temp_step_avg_time_str))
-	print 'steps_avg_time', steps_avg_time
+	print('steps_avg_time', steps_avg_time)
 	return steps_avg_time
 
 '''製作解答特徵的陣列'''
