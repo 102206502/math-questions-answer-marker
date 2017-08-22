@@ -268,3 +268,43 @@ image expect correct : step 1
 solution : 3
 recognition error on key : 1
 student state : 不會列方程式
+
+-------------------------------
+Stroke_74
+question data : payForPen
+image expect correct : step 1, 2
+solution : 1
+recognition error on key : ?
+student state : 計算錯誤
+
+-------------------------------
+Stroke_75
+question data : payForPen
+image expect correct : step 1, 2, 3
+solution : 4
+recognition error on key : ?
+student state : 計算錯誤
+
+-------------------------------
+Stroke_76
+question data : payForPen
+image expect correct : step 1, 2
+solution : 4
+recognition error on key : ?
+student state : 計算錯誤
+
+-------------------------------
+Stroke_77
+question data : payForPen
+image expect correct : step 1, 2
+solution : 1
+recognition error on key : ?
+student state : 計算錯誤
+
+-------------------------------
+Stroke_78
+question data : payForPen
+image expect correct : step 1, 2, 3
+solution : 1
+recognition error on key : ?
+student state : 計算錯誤
