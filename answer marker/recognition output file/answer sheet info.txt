@@ -236,3 +236,35 @@ image expect correct : step 1
 solution : 4
 recognition error on key : 1
 student state : 不會列方程式
+
+-------------------------------
+Stroke_70
+question data : payForPen
+image expect correct : step 1
+solution : 3
+recognition error on key : 1
+student state : 不會列方程式
+
+-------------------------------
+Stroke_71
+question data : payForPen
+image expect correct : step 1
+solution : 4
+recognition error on key : 0
+student state : 不會列方程式
+
+-------------------------------
+Stroke_72
+question data : payForPen
+image expect correct : step 1
+solution : 3
+recognition error on key : 1
+student state : 不會列方程式
+
+-------------------------------
+Stroke_73
+question data : payForPen
+image expect correct : step 1
+solution : 3
+recognition error on key : 1
+student state : 不會列方程式
