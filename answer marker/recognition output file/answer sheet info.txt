@@ -55,11 +55,10 @@ student state : 計算錯誤
 -------------------------------
 Stroke_44
 question data : payForPen
-image expect correct : all
+image expect correct : step 1, 2
 solution : 1
 recognition error on key : 1
-註 列式超出預期解答範圍
-student state : well
+student state : 計算錯誤
 
 -------------------------------
 Stroke_45
@@ -100,7 +99,7 @@ question data : payForPen
 image expect correct : step 1, 2, 3
 solution : 4**   (solution 8+4)
 recognition error on key : 0
-student state : 缺陷樣本
+student state : 瑕疵樣本
 
 -------------------------------
 Stroke_50
@@ -213,3 +212,27 @@ image expect correct : all
 solution : 1
 recognition error on key : 0
 student state : well
+
+-------------------------------
+Stroke_67
+question data : payForPen
+image expect correct : all
+solution : 3
+recognition error on key : 0
+student state : 計算太慢
+
+-------------------------------
+Stroke_68
+question data : payForPen
+image expect correct : step 1
+solution : 3
+recognition error on key : 0
+student state : 不會列方程式
+
+-------------------------------
+Stroke_69
+question data : payForPen
+image expect correct : step 1
+solution : 4
+recognition error on key : 1
+student state : 不會列方程式

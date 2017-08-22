@@ -1,9 +1,0 @@
-設買 x 枝鉛筆, 10-x 枝原子筆
-12x+25\left( n-x\right) +52=12\left( 10-x\right) +25x
-|2x+25\left( 10-x\right) +52=120-12x+25\times 
-12x+250-25x+52=120+25x-12x
--26x=-182
-x=7
-12\times 7+25\times \left( \begin{matrix} 10& -7\end{matrix} \right) =84+75=159
-159 元
-
