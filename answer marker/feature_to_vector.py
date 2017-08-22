@@ -23,7 +23,7 @@ def get_answers_result(question_file_nums, question_mode):
 		marked_result = math_question.get_marked_data()
 		marked_result.append(math_question.total_cost_time())
 		marked_results_list.append(marked_result)
-		# get_score.write_marked_result(math_question, str(file_num))
+		get_score.write_marked_result(math_question, str(file_num))
 
 	return marked_results_list
 

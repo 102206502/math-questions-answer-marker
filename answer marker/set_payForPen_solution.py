@@ -86,8 +86,8 @@ payForPen_question.addSolution(temp_solution)
 # solution 4 #
 temp_solution = AnswerMarkerer.MathSolution()
 temp_step = AnswerMarkerer.StepOfSolution('設買x枝原子筆，y 枝鉛筆', '設定變數')
-temp_step.addKey(r'(設|令).*買\s*(x|X)\s*(枝|支)原子筆')
-temp_step.addKey(r'(設|令).*(y|Y)\s*(枝|支)鉛筆')
+temp_step.addKey(r'((設|令).*買\s*(x|X)\s*(枝|支)原子筆)|((設|令).*買\s*(y|Y)\s*(枝|支)鉛筆)')
+temp_step.addKey(r'((設|令).*(y|Y)\s*(枝|支)鉛筆)|((設|令).*(x|X)\s*(枝|支)原子筆)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12y＋25 x ＋52＝12 x＋25 y, x+y=10', '列方程式')

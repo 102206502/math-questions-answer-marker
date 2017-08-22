@@ -220,3 +220,19 @@ image expect correct : all
 solution : 3
 recognition error on key : 0
 student state : 計算太慢
+
+-------------------------------
+Stroke_68
+question data : payForPen
+image expect correct : step 1
+solution : 3
+recognition error on key : 0
+student state : 不會列方程式
+
+-------------------------------
+Stroke_69
+question data : payForPen
+image expect correct : step 1
+solution : 4
+recognition error on key : 1
+student state : 不會列方程式
