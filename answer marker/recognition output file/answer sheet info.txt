@@ -274,7 +274,7 @@ Stroke_74
 question data : payForPen
 image expect correct : step 1, 2
 solution : 1
-recognition error on key : ?
+recognition error on key : 1
 student state : ­pºâ¿ù»~
 
 -------------------------------
@@ -282,15 +282,7 @@ Stroke_75
 question data : payForPen
 image expect correct : step 1, 2, 3
 solution : 4
-recognition error on key : ?
-student state : ­pºâ¿ù»~
-
--------------------------------
-Stroke_76
-question data : payForPen
-image expect correct : step 1, 2
-solution : 4
-recognition error on key : ?
+recognition error on key : 0
 student state : ­pºâ¿ù»~
 
 -------------------------------
@@ -298,7 +290,7 @@ Stroke_77
 question data : payForPen
 image expect correct : step 1, 2
 solution : 1
-recognition error on key : ?
+recognition error on key : 2
 student state : ­pºâ¿ù»~
 
 -------------------------------
@@ -306,5 +298,21 @@ Stroke_78
 question data : payForPen
 image expect correct : step 1, 2, 3
 solution : 1
-recognition error on key : ?
+recognition error on key : 0
+student state : ­pºâ¿ù»~
+
+-------------------------------
+Stroke_79
+question data : payForPen
+image expect correct : step 1, 2
+solution : 4
+recognition error on key : 1
+student state : ­pºâ¿ù»~
+
+-------------------------------
+Stroke_80
+question data : payForPen
+image expect correct : step 1, 2
+solution : 4
+recognition error on key : 2
 student state : ­pºâ¿ù»~
