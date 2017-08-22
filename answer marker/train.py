@@ -13,9 +13,9 @@ import matplotlib.pyplot as plt
 
 X_data, Y_data = feature_to_vector.get_all_data(2)
 X_train, X_test, Y_train, Y_test = train_test_split(X_data, Y_data, test_size = 0.25, random_state = 42)
-# print(X_data)
-# print(Y_data)
-# print(Y_data.shape)
+print(X_data)
+print(Y_data)
+print(Y_data.shape)
 
 clf = svm.SVC(kernel='linear')
 clf.fit(X_train, Y_train)
