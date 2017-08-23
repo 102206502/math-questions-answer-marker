@@ -101,11 +101,11 @@ temp_step.addKey(r'(y\s*=\s*7)|(y\s*=.*=\s*7)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')
-temp_step.addKey('=\s*159')
+temp_step.addKey(r'=\s*159')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('答：159 元', '寫答案')
-temp_step.addKey('1\s*5\s*9\s*\(?(元|塊)\)?')
+temp_step.addKey(r'1\s*5\s*9\s*\(?(元|塊)\)?')
 temp_solution.add_step(temp_step)
 
 payForPen_question.addSolution(temp_solution)
