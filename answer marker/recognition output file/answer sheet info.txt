@@ -318,9 +318,9 @@ recognition error on key : 2
 student state : ­pºâ¿ù»~
 
 -------------------------------
-Stroke_81
+Stroke_82
 question data : payForPen
 image expect correct : all
 solution : 4
-recognition error on key : ?
+recognition error on key : 0
 student state : ­pºâ¤ÓºC
