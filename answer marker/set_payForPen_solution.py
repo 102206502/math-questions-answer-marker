@@ -16,7 +16,7 @@ temp_step.addKey(r'12x\+(\\left\(\s*)?\s*25(\\right\))?\s*\\left\(\s*10-x\\right
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12x＋25 ( 10－x )＋52＝12 ( 10－x )＋25x\n12x＋250－25x＋52＝120－12x＋25x\n－26x＝－182\nx＝7', '算出方程式解')
-temp_step.addKey(r'x\s*=\s*7')
+temp_step.addKey(r'(x\s*=\s*7)|(x\s*=.*=\s*7)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')
@@ -41,7 +41,7 @@ temp_step.addKey(r'12x\+25\\left \( 10-x \\right \)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12(10－x)＋25 x ＋52＝12 x＋25 ( 10－x )\n120－10x＋25 x＋52＝12x＋250－25x\n26x＝78\nx＝3', '算出方程式解')
-temp_step.addKey(r'x\s*=\s*3')
+temp_step.addKey(r'(x\s*=\s*3)|(x\s*=.*=\s*3)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')
@@ -68,8 +68,8 @@ temp_step.addKey(r'(\s*x\s*\+\s*y\s*=\s*10)|(\s*y\s*\+\s*x\s*=\s*10)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('x-y=4, x+y=10,x=7,y=3', '算出方程式解')
-temp_step.addKey(r'x\s*=\s*7')
-temp_step.addKey(r'y\s*=\s*3')
+temp_step.addKey(r'(x\s*=\s*7)|(x\s*=.*=\s*7)')
+temp_step.addKey(r'(y\s*=\s*3)|(y\s*=.*=\s*3)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')
@@ -96,8 +96,8 @@ temp_step.addKey(r'(\s*x\s*\+\s*y\s*=\s*10)|(\s*y\s*\+\s*x\s*=\s*10)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('x-y=-4, x+y=10, x=3,y=7', '算出方程式解')
-temp_step.addKey(r'x\s*=\s*3')
-temp_step.addKey(r'y\s*=\s*7')
+temp_step.addKey(r'(x\s*=\s*3)|(x\s*=.*=\s*3)')
+temp_step.addKey(r'(y\s*=\s*7)|(y\s*=.*=\s*7)')
 temp_solution.add_step(temp_step)
 
 temp_step = AnswerMarkerer.StepOfSolution('12\\times 7+25\\times \left( \\begin\{matrix\} 10& -7\\end\{matrix\} \\right) =84+75=159', '計算答案')

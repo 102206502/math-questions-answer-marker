@@ -67,7 +67,7 @@ image expect correct : all
 solution : 4
 recognition error on key : 1
 註 列式超出預期解答範圍
-student state : well
+student state : 計算太慢
 
 -------------------------------
 Stroke_46
@@ -316,3 +316,11 @@ image expect correct : step 1, 2
 solution : 4
 recognition error on key : 2
 student state : 計算錯誤
+
+-------------------------------
+Stroke_81
+question data : payForPen
+image expect correct : all
+solution : 4
+recognition error on key : ?
+student state : 計算太慢

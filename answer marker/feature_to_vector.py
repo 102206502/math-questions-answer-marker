@@ -9,9 +9,9 @@ import numpy as np
 
 student_state_dic = {'well' : 0, '不會列方程式' : 1, '計算錯誤' : 2, '計算太慢' : 3, '公式不熟' : 4, '完全不會' : 5}
 file_nums_question1 = [37, 38, 52, 53, 55, 56, 58]
-file_nums_question2 = [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 77, 78, 79, 80]
+file_nums_question2 = [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 77, 78, 79, 80,82]
 file_nums_question_list = [file_nums_question1, file_nums_question2]
-student_state_list  = [ 0,  0,  0,  1,  2,  2,  3,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  3,  4,  4,  4,  4,  4,  4,  2,  2,  2,  2,  2,  2]
+student_state_list  = [ 0,  0,  0,  1,  2,  2,  3,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  3,  4,  4,  4,  4,  4,  4,  2,  2,  2,  2,  2,  2, 3]
 FMT = '%H:%M:%S.%f0'
 '''取得同類題目的全部資料'''
 def get_answers_result(question_file_nums, question_mode):
